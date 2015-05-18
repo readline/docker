@@ -2,7 +2,7 @@
 
 This docker contains an Ubuntu 10.04 lucid system and pre-installed Genome MuSiC 0.4. Provides an environment for running MuSiC in instance.
 
-This docker could be built in any docker environment where the internet is available. The apt-get source in this package is mirrors.163.com, if you are not in China or have pool speed connecting that source, you can change the source.list file.
+This docker could be built in any docker environment where the internet is available. The apt-get source in this package is mirrors.163.com, if you are not in China or have poor speed connecting that source, you can change the source.list file.
 
 ### Running method
 ---
