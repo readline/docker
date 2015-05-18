@@ -22,6 +22,53 @@ To start a container for MuSic analysis, run:
 docker run -it -v /path/to/your/files:/path/to/mount/your/files readline/music /bin/bash
 ```
 
+### Automatic running tool
+
+```
+./dockerMuSiC.py -h
+Usage: dockerMuSiC.py [options]
+
+Options:
+  -h, --help            show this help message and exit
+  -b BAMLIST, --bamlist=BAMLIST
+                        Bamlist file path
+  -a BAMPATH, --bampath=BAMPATH
+                        Bampath accord with the bamlist
+  -m MAF, --maf=MAF     Maf file path
+  -r ROI, --roi=ROI     Roi file path
+  -f REF, --ref=REF     Reference fasta path
+  -n NDEPTH, --ndepth=NDEPTH
+                        Normal min depth [default=14]
+  -t TDEPTH, --tdepth=TDEPTH
+                        Tumor min depth [default=8]
+  -q MAPQ, --mapq=MAPQ  Min mapq [default=1]
+  -p THREADS, --threads=THREADS
+                        Num of threads [default=1]
+  -o PREFIX, --prefix=PREFIX
+                        Output path prefix
+  -d DOCKER, --docker=DOCKER
+                        Docker image name
+```
+Example:
+```
+./dockerMuSiC.py -b /path/to/bamlist -a /path/to/bamfile -m /path/to/maf -r /path/to/roi -f /path/to/reference.fa -p 24 -o /path/to/output -d finno/music
+```
+
+This tools could run the entire pipe of MuSiC, but if you can't tolerate the single thread calc-covg, you can use the docker with interactive mode and run 
+```
+genome music bmr calc-covg \
+--roi-file /path/to/roi \
+--reference-sequence /path/to/reference.fa \
+--bam-list /path/to/bamlist \
+--output-dir music \
+--normal-min-depth 14 \
+--tumor-min-depth 8 \
+--min-mapq 1 
+```
+in parrallel.
+
+Then, break down the automatic docker pipe, copy the music ready covg file to the /path/to/output/music/roi_covgs/ directory, then, restart the container. You would skip the calc-covg part and go on.
+
 
 ### Infomations about MuSiC
 
