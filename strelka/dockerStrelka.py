@@ -85,7 +85,7 @@ def main():
     writefile = open('%s/run_strelka.sh'%options.outpath,'w')
     writefile.write('export PATH=/opt/strelka/bin:$PATH\n')
     writefile.write('echo Strelka start at `date`, `hostname` &&\n')
-    writefile.write('configureStrelkaWorkflow.pl --tumor /data/tumor.bam --normal /data/tumor.bam --ref /data/ref.fa --config %s --output-dir /data/strelka &&\n'%config)
+    writefile.write('configureStrelkaWorkflow.pl --tumor /data/tumor.bam --normal /data/normal.bam --ref /data/ref.fa --config %s --output-dir /data/strelka &&\n'%config)
     writefile.write('make -C /data/strelka -j %d &&\n'%options.threads)
     writefile.write('rm /data/*.bam /data/*.bai /data/ref.fa* &&')
     writefile.write('mv /data/strelka/results /data/ &&\n')
