@@ -73,9 +73,7 @@ def main():
         %(os.path.abspath(options.prefix),os.path.abspath(options.bampath), 
           os.path.abspath(options.bampath), options.docker)
     print cmd
-    tmp = os.popen(cmd)
-
-    print 'Mission submitted to docker container:\n%s'%tmp.readline().rstrip()
+    tmp = os.system(cmd)
 
 if __name__ == '__main__':
     main()
